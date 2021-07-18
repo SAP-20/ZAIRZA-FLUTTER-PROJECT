@@ -1,10 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-void main() {
-  runApp(Profile());
+import 'package:skill_care/Cart.dart';
+import 'package:skill_care/Grid%20View.dart';
+import 'package:skill_care/Login.dart';
+
+class Profile extends StatefulWidget {
+  @override
+  _ProfileState createState() => _ProfileState();
 }
 
-class Profile extends StatelessWidget {
+class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,7 +20,11 @@ class Profile extends StatelessWidget {
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             color: Colors.black,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, new MaterialPageRoute(
+                  builder: (context) => Cart())
+              );
+            },
           ),
           title: Text(
             'Profile',
@@ -55,7 +64,11 @@ class Profile extends StatelessWidget {
                         minWidth: 350.0,
                         buttonColor: Colors.blueAccent,
                         child: RaisedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context, new MaterialPageRoute(
+                                builder: (context) => LoginPage())
+                            );
+                          },
                           child: Text(
                             'Login',
                             style: TextStyle(
@@ -74,9 +87,10 @@ class Profile extends StatelessWidget {
         ),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.white,
+          currentIndex: 1,
           items: const<BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.home,),
               title: Text(('Home')),
               backgroundColor: Colors.white,
             ),

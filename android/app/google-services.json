@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "692404734003",
+    "project_id": "pro1-c8ee2",
+    "storage_bucket": "pro1-c8ee2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:692404734003:android:60b6b070716db83a98bb46",
+        "android_client_info": {
+          "package_name": "com.sarthak.skill_care"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "692404734003-1nuobhedp8c427t9tpa33apaqimvm8r1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sarthak.skill_care",
+            "certificate_hash": "c948ffdb74a34d90be3e0cc001b0ea28fc12a04b"
+          }
+        },
+        {
+          "client_id": "692404734003-3qblu9iv97tbn7mtvchuna98o7pllbnj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBXU3qnal3W355Sws9ot1NEdtDpyTjDzI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "692404734003-3qblu9iv97tbn7mtvchuna98o7pllbnj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

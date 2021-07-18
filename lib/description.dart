@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:skill_care/Cart.dart';
 
-void main() {
-  runApp(cart());
+class cart extends StatefulWidget {
+  @override
+  _cartState createState() => _cartState();
 }
 
-class cart extends StatelessWidget {
+class _cartState extends State<cart> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,7 +17,9 @@ class cart extends StatelessWidget {
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             color: Colors.black,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, "SecondPage");
+            },
           ),
           title: Text(
             'Profile',
@@ -27,7 +31,9 @@ class cart extends StatelessWidget {
           ),
           centerTitle: true,
           actions: <Widget>[
-            IconButton(icon: Icon(Icons.shopping_cart,color: Colors.black,), onPressed: () {})
+            IconButton(icon: Icon(Icons.shopping_cart,color: Colors.black,), onPressed: () {
+              Navigator.pushNamed(context, "FifthPage");
+            })
           ],
         ),
         body: Card(
@@ -84,7 +90,9 @@ class cart extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50.0)
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, "FifthPage");
+                          },
                           child: Text(
                             'Add to Cart',
                             style: TextStyle(
@@ -105,7 +113,9 @@ class cart extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50.0)
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, "SixthPage");
+                          },
                           child: Text(
                             'Buy Now',
                             style: TextStyle(

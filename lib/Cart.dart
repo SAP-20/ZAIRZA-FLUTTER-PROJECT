@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:skill_care/Profile.dart';
 import 'package:skill_care/description.dart';
-void main() {
-  runApp(Cart());
+class Cart extends StatefulWidget {
+  @override
+  _CartState createState() => _CartState();
 }
-class Cart extends StatelessWidget {
+
+class _CartState extends State<Cart> {
+  void checkout() {
+
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -13,7 +19,9 @@ class Cart extends StatelessWidget {
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             color: Colors.black,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, "SecondPage");
+            },
           ),
           title: Text(
             'Yours Orders',
@@ -29,39 +37,46 @@ class Cart extends StatelessWidget {
           itemCount: 16,
           itemBuilder: (context,index){
             return Card(
-                child: Container(
-                  child: new Row(
-                    children: [                    Image(
-                      image: AssetImage('images/mac.jfif'),
-                      height: 150.0,
-                      width: 175.0,
+                child: GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, new MaterialPageRoute(
+                        builder: (context) => Profile())
+                    );
+                  },
+                  child: Container(
+                    child: new Row(
+                      children: [                    Image(
+                        image: AssetImage('images/mac.jfif'),
+                        height: 150.0,
+                        width: 175.0,
+                      ),
+                        SizedBox(
+                          width: 40.0,
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                                "MacBookAir",
+                                style: TextStyle(
+                                  fontSize: 15.0,
+                                  color: Colors.black,
+                                  fontStyle: FontStyle.italic,
+                                )
+                            ),
+                            SizedBox(
+                              height: 40.0,
+                            ),
+                            new Text(
+                                "\$3000",
+                                style: TextStyle(
+                                  fontSize: 15.0,
+                                  color: Colors.grey,
+                                )
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                      SizedBox(
-                        width: 40.0,
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                              "MacBookAir",
-                              style: TextStyle(
-                                fontSize: 15.0,
-                                color: Colors.black,
-                                fontStyle: FontStyle.italic,
-                              )
-                          ),
-                          SizedBox(
-                            height: 40.0,
-                          ),
-                          new Text(
-                              "\$3000",
-                              style: TextStyle(
-                                fontSize: 15.0,
-                                color: Colors.grey,
-                              )
-                          ),
-                        ],
-                      ),
-                    ],
                   ),
                 )
             );

@@ -1,11 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:skill_care/Cart.dart';
+import 'package:skill_care/Grid%20View.dart';
+import 'package:skill_care/Registration_Screen.dart';
 import 'constants.dart';
-void main() {
-  runApp(LoginPage());
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+
+
+
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
 }
 
+class _LoginPageState extends State<LoginPage> {
+  final _auth=FirebaseAuth.instance;
+  String email;
+  String password;
+  var wrongEmail;
+  var wrongPassword;
+  var emailText;
+  var passwordText;
 
-class LoginPage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,7 +42,7 @@ class LoginPage extends StatelessWidget {
                   'SkillKraft',
                   style: TextStyle(
                     fontSize: 40.0,
-                    color: Colors.black,
+                    color: Colors.black87,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -38,7 +56,7 @@ class LoginPage extends StatelessWidget {
                 child: Text(
                   'Login',
                   style: TextStyle(
-                      color: Colors.grey,
+                      color: Colors.black,
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold
                   ),
@@ -48,6 +66,9 @@ class LoginPage extends StatelessWidget {
                 height: 60.0,
               ),
               TextFormField(
+                onChanged: (value){
+                  email=value;
+                },
                 keyboardType: TextInputType.emailAddress,
                 textAlign: TextAlign.center,
                 decoration:
@@ -57,6 +78,9 @@ class LoginPage extends StatelessWidget {
                 height: 8.0,
               ),
               TextField(
+                onChanged: (value){
+                  password=value;
+                },
                 obscureText: true,
                 textAlign: TextAlign.center,
                 decoration: kTextFieldDecoration.copyWith(
@@ -78,21 +102,61 @@ class LoginPage extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50.0)
                         ),
-                        onPressed: () => {},
+                        onPressed: () async {
+                          try {
+                            setState(() {
+                              wrongEmail = false;
+                              wrongPassword = false;
+                            });
+                            final user = await _auth.signInWithEmailAndPassword(
+                                email: email, password: password);
+                            if (user != null) {
+                              print("Sucessfull");
+                              Navigator.push(context, new MaterialPageRoute(
+                                  builder: (context) => gridview())
+                              );
+                            }
+                          } catch (e) {
+                            print(e.code);
+                            if (e.code == 'ERROR_WRONG_PASSWORD') {
+                              setState(() {
+                                wrongPassword = true;
+                              });
+                            } else {
+                              setState(() {
+                                emailText = 'User doesn\'t exist';
+                                passwordText = 'Please check your email';
+                                wrongPassword = true;
+                                wrongEmail = true;
+                              });
+                            }
+                          }
+                        },
                       ),
                     ),
+                  ),
+                  SizedBox(
+                    height: 5.0,
                   ),
                   SizedBox(
                     height: 2.0,
                   ),
                   Align(
                     alignment: Alignment.center,
-                    child: Text(
-                      'Donot Have a Account?',
-                      style: TextStyle(
-                        color: Colors.blueGrey,
-                        fontSize: 13.0,
+                    child: GestureDetector(
+                      child: Text(
+                        'Donot Have a Account?',
+                        style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: Colors.blue,
+                          fontSize: 15.0,
+                        ),
                       ),
+                      onTap: () {
+                        Navigator.push(context, new MaterialPageRoute(
+                            builder: (context) => RegisterPage())
+                        );
+                      },
                     ),
                   ),
                 ],

@@ -2,13 +2,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:velocity_x/velocity_x.dart';
+import 'package:skill_care/Cart.dart';
+import 'package:skill_care/description.dart';
 import 'catalogList.dart';
-void main() {
-  runApp(HomePage());
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
 }
 
-class HomePage extends StatelessWidget {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,7 +29,9 @@ class HomePage extends StatelessWidget {
           ),
           centerTitle: true,
           actions: <Widget>[
-            IconButton(icon: Icon(Icons.shopping_cart,color: Colors.black,), onPressed: () {})
+            IconButton(icon: Icon(Icons.shopping_cart,color: Colors.black,), onPressed: () {
+              Navigator.pushNamed(context, "FifthPage");
+            })
           ],
         ),
         body: Container(
@@ -63,7 +68,9 @@ class HomePage extends StatelessWidget {
                         Icons.grid_on_sharp,
                         color: Colors.black87,
                       ),
-                      onPressed: () {}
+                      onPressed: () {
+                        Navigator.pushNamed(context, "ThirdPage");
+                      }
                   ),
 
                 ],
@@ -73,39 +80,46 @@ class HomePage extends StatelessWidget {
                   itemCount: 16,
                   itemBuilder: (context,index){
                     return Card(
-                        child: Container(
-                          child: new Row(
-                            children: [                    Image(
-                              image: AssetImage('images/mac.jfif'),
-                              height: 150.0,
-                              width: 175.0,
+                        child:GestureDetector(
+                          onTap: () {
+                            Navigator.push(context, new MaterialPageRoute(
+                                builder: (context) => cart())
+                            );
+                          },
+                          child: Container(
+                            child: new Row(
+                              children: [                    Image(
+                                image: AssetImage('images/mac.jfif'),
+                                height: 150.0,
+                                width: 175.0,
+                              ),
+                                SizedBox(
+                                  width: 40.0,
+                                ),
+                                Column(
+                                  children: [
+                                    Text(
+                                        "MacBookAir",
+                                        style: TextStyle(
+                                          fontSize: 15.0,
+                                          color: Colors.black,
+                                          fontStyle: FontStyle.italic,
+                                        )
+                                    ),
+                                    SizedBox(
+                                      height: 40.0,
+                                    ),
+                                    new Text(
+                                        "\$3000",
+                                        style: TextStyle(
+                                          fontSize: 15.0,
+                                          color: Colors.grey,
+                                        )
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
-                              SizedBox(
-                                width: 40.0,
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                      "MacBookAir",
-                                      style: TextStyle(
-                                        fontSize: 15.0,
-                                        color: Colors.black,
-                                        fontStyle: FontStyle.italic,
-                                      )
-                                  ),
-                                  SizedBox(
-                                    height: 40.0,
-                                  ),
-                                  new Text(
-                                      "\$3000",
-                                      style: TextStyle(
-                                        fontSize: 15.0,
-                                        color: Colors.grey,
-                                      )
-                                  ),
-                                ],
-                              ),
-                            ],
                           ),
                         )
                     );
